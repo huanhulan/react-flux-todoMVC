@@ -12,7 +12,7 @@ const TodoActionCreator = {
     },
     removeTodoFromStore(todo) {
         let action = {
-            type: ActionConstants.REMOVE_ITEM,
+            type: ActionsTable.REMOVE_ITEM,
             item: todo
         };
 
@@ -20,7 +20,7 @@ const TodoActionCreator = {
     },
     updateTodoInStore(oldTodo, newTodo) {
         let action = {
-            type: ActionConstants.UPDATE_ITEM,
+            type: ActionsTable.UPDATE_ITEM,
             from: oldTodo,
             to: newTodo
         };
@@ -29,7 +29,7 @@ const TodoActionCreator = {
     },
     toggleStateForTodo(todo) {
         let action = {
-            type: ActionConstants.TOGGLE_COMPLETE,
+            type: ActionsTable.TOGGLE_COMPLETE,
             item: todo
         };
 
@@ -37,7 +37,7 @@ const TodoActionCreator = {
     },
     removeAllCompletedTodoInStore(todo) {
         let action = {
-            type: ActionConstants.REMOVE_COMPLETED,
+            type: ActionsTable.REMOVE_COMPLETED,
             item: todo
         };
 
@@ -45,7 +45,7 @@ const TodoActionCreator = {
     },
     setAllTodoToCompleted() {
         let action = {
-            type: ActionConstants.TOGGLE_COMPLETE
+            type: ActionsTable.ALL_DONE
         };
 
         return TodoDispatcher.dispatch(action);

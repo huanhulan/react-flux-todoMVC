@@ -21,7 +21,7 @@ var TodoStore = assign({}, EventEmitter.prototype, {
         this.on(EVT, cb);
     },
     removeChangeListner(cb) {
-        this.removeListener(CHANGE_EVENT, callback);
+        this.removeListener(EVT, cb);
     },
     getAllTodos() {
         return _todos;
@@ -73,7 +73,7 @@ function handleAction(action) {
 
 /**private methods start**/
 // TODO: localstorage
-function __getIndexInTodos(item) {
+function _getIndexInTodos(item) {
     return _todos.indexOf(item);
 }
 
@@ -103,7 +103,7 @@ function _setAllToCompleted() {
 
 function _toggleItem(item) {
     var todo = _todos[_getIndexInTodos(item)];
-
+    console.log(todo)
     todo.completed = !todo.completed;
 }
 
@@ -112,3 +112,6 @@ function _removeAllCompletedItem(item) {
 
     _todos = res;
 }
+
+// remember to do this
+export default TodoStore;
