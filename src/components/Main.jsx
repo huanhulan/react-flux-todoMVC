@@ -3,7 +3,7 @@ import ActionCreator from './../actions/TodoActionCreators';
 import TodoStore from './../stores/TodoStore';
 
 const Main = React.createClass({
-    getInitialState() {
+    getAllDone(){
         var isAllDone = 
                     TodoStore.getAllTodos().length
                     === TodoStore.getCompletedTodos().length;
@@ -12,6 +12,9 @@ const Main = React.createClass({
             allDone:isAllDone
         }
     },
+    getInitialState() {
+        return this.getAllDone();
+    },
     componentDidMount() {
         TodoStore.attachChangeListner(this.onTodoChange);
     },
@@ -19,22 +22,20 @@ const Main = React.createClass({
         TodoStore.removeChangeListner(this.onTodoChange);
     },
     onTodoChange(){
-        var isAllDone = 
-                    TodoStore.getAllTodos().length
-                    === TodoStore.getCompletedTodos().length;
-
-        return this.setState({
-            allDone:isAllDone
-        });
+        return this.setState(this.getAllDone());
     },
     handleClick(e){
-        console.log(e);
         return ActionCreator.setAllTodoToCompleted();
     },
     render(){
         return (
             <section className='main'>
-                <input className={this.state.allDone?'toggle-all hidden':'toggle-all'} type="checkbox" checked={this.state.allDone} onClick={this.handleClick}/>
+                <input 
+                    className={this.state.allDone?'toggle-all hidden':'toggle-all'}
+                    type="checkbox"
+                    checked={this.state.allDone}
+                    onMouseUp={this.handleClick}
+                />
             </section>
         );
     }

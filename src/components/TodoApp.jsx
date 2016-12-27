@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Main from './Main';
+import Footer from './Footer'
 import Info from './Info';
 
 var footerTextList = ['回车以增加条目','双击以编辑条目'];
@@ -16,6 +17,7 @@ const TodoApp = React.createClass({
                 <section className="todoapp">
                     <Header/>
                     <Main/>
+                    <Footer/>
                 </section>
                 <Info footerTextList={footerTextList}/>
             </div>

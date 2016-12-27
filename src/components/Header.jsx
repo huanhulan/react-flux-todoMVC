@@ -8,7 +8,7 @@ var autoFocus = true;
 const Header = React.createClass({
     getInitialState() {
       return {
-        newTodo:"a"
+        newTodo:""
       };  
     },
     handleChange(e) {
