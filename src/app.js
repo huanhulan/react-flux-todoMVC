@@ -1,5 +1,4 @@
-import './style.css';
 import React from 'react';
-import TodoList from './components/todoList';
+import TodoList from './components/TodoList';
 
-return React.render(<TodoList>, document.getElementById('app'));
+React.render(<TodoList />, document.getElementById('app'));
