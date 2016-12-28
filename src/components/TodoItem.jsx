@@ -5,7 +5,6 @@ import ActionCreator from './../actions/TodoActionCreators'
 const TodoItem = React.createClass({
     getInitialState() {
         return {
-            isComplete:!!this.props.todo.completed,
             editing:false,
             beforeEditCache:null // cache item when editing
         };
@@ -30,14 +29,14 @@ const TodoItem = React.createClass({
     },
     render() {
         const classes = classnames({
-            completed: this.state.isComplete,
+            completed: this.props.todo.completed,
             editing: this.state.isEditing,
             todo:'todo'
         });
         return (
             <li className={classes}>
                 <div className="view">
-                    <input className="toggle" type="checkbox" onChange={this.toggleComplete} />
+                    <input className="toggle" type="checkbox" onChange={this.toggleComplete} checked={this.props.todo.completed}/>
                     <label onDoubleClick={this.editTodo}>{this.props.todo.title}</label>
                     <button className="destroy" onClick={this.removeTodo}></button>
                 </div>
