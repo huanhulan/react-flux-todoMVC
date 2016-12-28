@@ -1,18 +1,12 @@
 import React from 'react';
 import assign from 'object-assign';
 import ActionCreator from './../actions/TodoActionCreators';
-import {
-  createHistory,
-  useBasename
-} from 'history'
-import {
-  Router,
-  Route,
-  IndexRoute,
-  Link
-} from 'react-router'
+import TodoList from './TodoList';
 
 const Main = React.createClass({
+    propTypes:{
+        filteredTodos:React.PropTypes.array
+    },
     handleClick(e){
         return ActionCreator.setAllTodoToCompleted();
     },
@@ -20,10 +14,10 @@ const Main = React.createClass({
         return (
             <section className='main'>
                 <input 
-                    className={this.props.allDone?'toggle-all hidden':'toggle-all'}
                     type="checkbox"
+                    className={this.props.allDone?'toggle-all hidden':'toggle-all'}
                     checked={this.props.allDone}
-                    onMouseUp={this.handleClick}
+                    onClick={this.handleClick}
                 />
             </section>
         );

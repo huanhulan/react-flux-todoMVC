@@ -11,8 +11,8 @@ const TodoList = React.createClass({
         filteredTodos:React.PropTypes.array
     },
     getTodos(){
-        return this.props.filteredTodos.map(todo=>{
-            return (<TodoItem todo={todo}/>);
+        return this.props.filteredTodos.map((todo,index)=>{
+            return (<TodoItem todo={todo} key={index}/>);
         });
     },
     render(){
