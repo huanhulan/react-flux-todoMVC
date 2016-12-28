@@ -1,7 +1,6 @@
 import React from 'react';
 import assign from 'object-assign';
 import ActionCreator from './../actions/TodoActionCreators';
-import TodoStore from './../stores/TodoStore';
 import {
   createHistory,
   useBasename
@@ -14,29 +13,6 @@ import {
 } from 'react-router'
 
 const Main = React.createClass({
-    getAllDone(){
-        var isAllDone = 
-                    TodoStore.getAllTodos().length
-                    === TodoStore.getCompletedTodos().length;
-
-        return {
-            allDone:isAllDone
-        }
-    },
-    getInitialState() {
-        return assign({},{
-            filteredTodos:[]
-        },this.getAllDone());
-    },
-    componentDidMount() {
-        TodoStore.attachChangeListner(this.onTodoChange);
-    },
-    componentWillMount() {
-        TodoStore.removeChangeListner(this.onTodoChange);
-    },
-    onTodoChange(){
-        return this.setState(this.getAllDone());
-    },
     handleClick(e){
         return ActionCreator.setAllTodoToCompleted();
     },
@@ -44,9 +20,9 @@ const Main = React.createClass({
         return (
             <section className='main'>
                 <input 
-                    className={this.state.allDone?'toggle-all hidden':'toggle-all'}
+                    className={this.props.allDone?'toggle-all hidden':'toggle-all'}
                     type="checkbox"
-                    checked={this.state.allDone}
+                    checked={this.props.allDone}
                     onMouseUp={this.handleClick}
                 />
             </section>

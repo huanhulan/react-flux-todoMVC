@@ -13,7 +13,9 @@ const TodoApp = React.createClass({
         return {
             filteredTodos:this.getFilteredTodos(this.props.location.pathname),
             all:TodoStore.getAllTodos().length,
-            remainings:TodoStore.getActiveTodos().length
+            remainings:TodoStore.getActiveTodos().length,
+            allDone:TodoStore.getAllTodos().length
+                    === TodoStore.getCompletedTodos().length
         };
     },
     componentDidMount() {
@@ -39,7 +41,9 @@ const TodoApp = React.createClass({
         return this.setState({
             filteredTodos:todos,
             all:TodoStore.getAllTodos().length,
-            remainings:TodoStore.getActiveTodos().length
+            remainings:TodoStore.getActiveTodos().length,
+            allDone:TodoStore.getAllTodos().length
+                    === TodoStore.getCompletedTodos().length
         });
     },
     getFilteredTodos(pathname){
@@ -63,7 +67,7 @@ const TodoApp = React.createClass({
             <div>
                 <section className="todoapp">
                     <Header/>
-                    <Main filteredTodos={this.state.filteredTodos}/>
+                    <Main filteredTodos={this.state.filteredTodos} allDone={this.state.allDone}/>
                     <Footer all={this.state.all} remainings={this.state.remainings}/>
                 </section>
                 <Info footerTextList={footerTextList}/>
