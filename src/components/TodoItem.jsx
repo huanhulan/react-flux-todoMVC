@@ -6,7 +6,7 @@ const TodoItem = React.createClass({
     getInitialState() {
         return {
             editing:false,
-            beforeEditCache:null // cache item when editing
+            editingTodo:this.props.todo // create a copy of origin todo when edit one
         };
     },
     propTypes:{
@@ -21,14 +21,17 @@ const TodoItem = React.createClass({
     handleChange(){
         // TODO:handle change evt
     },
-    removeTodo(){
-        // TODO:create removeTodo action
-    },
     doneEdit(){
         // TODO:create updateTodo action
     },
+    toggleComplete(){
+        return ActionCreator.toggleStateForTodo(this.props.todo);
+    },
+    removeTodo(){
+        return ActionCreator.removeTodoFromStore(this.props.todo);
+    },
     render() {
-        const classes = classnames({
+        var classes = classnames({
             completed: this.props.todo.completed,
             editing: this.state.isEditing,
             todo:'todo'
@@ -40,7 +43,7 @@ const TodoItem = React.createClass({
                     <label onDoubleClick={this.editTodo}>{this.props.todo.title}</label>
                     <button className="destroy" onClick={this.removeTodo}></button>
                 </div>
-                <input className="edit" type="text" value={this.props.todo.title} 
+                <input className="edit" type="text" value={this.state.editingTodo.title} 
                  autoFocus={this.state.isEditing} onBlur={this.doneEdit}
                  onKeyUp={this.handelKeyUp} onChange={this.handleChange}/>
             </li>

@@ -67,7 +67,7 @@ const TodoApp = React.createClass({
             <div>
                 <section className="todoapp">
                     <Header/>
-                    <Main filteredTodos={this.state.filteredTodos} allDone={this.state.allDone}/>
+                    <Main filteredTodos={this.state.filteredTodos} allDone={this.state.allDone} all={this.state.all}/>
                     <Footer all={this.state.all} remainings={this.state.remainings}/>
                 </section>
                 <Info footerTextList={footerTextList}/>

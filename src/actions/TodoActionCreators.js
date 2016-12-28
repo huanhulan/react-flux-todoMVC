@@ -49,6 +49,13 @@ const TodoActionCreator = {
         };
 
         return TodoDispatcher.dispatch(action);
+    },
+    setAllTodoToUncompleted() {
+        let action = {
+            type: ActionsTable.ALL_UNDONE
+        };
+
+        return TodoDispatcher.dispatch(action);
     }
 };
 

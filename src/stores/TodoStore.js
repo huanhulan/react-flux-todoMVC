@@ -65,6 +65,10 @@ function handleAction(action) {
             _removeAllCompletedItem();
             _emitChange();
             break;
+        case ActionsTable.ALL_UNDONE:
+            _setAllToUncompleted();
+            _emitChange();
+            break;
         default:
             console.log(`uncaught action ${action.type}`);
             break;
@@ -99,6 +103,10 @@ function _updateItem(fromItem, toItem) {
 
 function _setAllToCompleted() {
     return _todos.map(todo => todo.completed = true);
+}
+
+function _setAllToUncompleted(argument) {
+    return _todos.map(todo => todo.completed = false);
 }
 
 function _toggleItem(item) {
