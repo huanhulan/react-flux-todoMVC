@@ -19,6 +19,7 @@ const Main = React.createClass({
                     checked={this.props.allDone}
                     onClick={this.handleClick}
                 />
+                <TodoList filteredTodos={this.props.filteredTodos}/>
             </section>
         );
     }

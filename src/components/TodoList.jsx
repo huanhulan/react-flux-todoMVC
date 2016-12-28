@@ -11,14 +11,18 @@ const TodoList = React.createClass({
         filteredTodos:React.PropTypes.array
     },
     getTodos(){
-        return this.props.filteredTodos.map((todo,index)=>{
+        var todoItemList = this.props.filteredTodos.map((todo,index)=>{
             return (<TodoItem todo={todo} key={index}/>);
         });
+        
+        return todoItemList;
     },
     render(){
-        (<ul className='todo-list'>
-            {getTodos()}
-        </ul>)
+        return (
+            <ul className='todo-list'>
+                {this.getTodos()}
+            </ul>
+        );
     }
 });
 

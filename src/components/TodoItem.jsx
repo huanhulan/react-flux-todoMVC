@@ -19,6 +19,9 @@ const TodoItem = React.createClass({
     handelKeyUp(){
         // TODO:handle enter & esc
     },
+    handleChange(){
+        // TODO:handle change evt
+    },
     removeTodo(){
         // TODO:create removeTodo action
     },
@@ -36,11 +39,11 @@ const TodoItem = React.createClass({
                 <div className="view">
                     <input className="toggle" type="checkbox" onChange={this.toggleComplete} />
                     <label onDoubleClick={this.editTodo}>{this.props.todo.title}</label>
-                    <button class="destroy" onClick={this.removeTodo}></button>
+                    <button className="destroy" onClick={this.removeTodo}></button>
                 </div>
                 <input className="edit" type="text" value={this.props.todo.title} 
-                 autoFocus={this.state.isEditing} onBlur="doneEdit(todo)"
-                 onKeyUp={this.handelKeyUp} />
+                 autoFocus={this.state.isEditing} onBlur={this.doneEdit}
+                 onKeyUp={this.handelKeyUp} onChange={this.handleChange}/>
             </li>
         );
     }
