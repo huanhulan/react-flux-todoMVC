@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoApp from './components/TodoApp';
+import TodoRouter from './router/Router'
+import {
+    browserHistory,
+    Router
+} from 'react-router';
 
-ReactDOM.render(<TodoApp />, document.getElementById('app'));
+ReactDOM.render((<Router history={browserHistory} routes={TodoRouter} />), document.getElementById('app'));

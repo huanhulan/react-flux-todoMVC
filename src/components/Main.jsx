@@ -1,6 +1,17 @@
 import React from 'react';
+import assign from 'object-assign';
 import ActionCreator from './../actions/TodoActionCreators';
 import TodoStore from './../stores/TodoStore';
+import {
+  createHistory,
+  useBasename
+} from 'history'
+import {
+  Router,
+  Route,
+  IndexRoute,
+  Link
+} from 'react-router'
 
 const Main = React.createClass({
     getAllDone(){
@@ -13,7 +24,9 @@ const Main = React.createClass({
         }
     },
     getInitialState() {
-        return this.getAllDone();
+        return assign({},{
+            filteredTodos:[]
+        },this.getAllDone());
     },
     componentDidMount() {
         TodoStore.attachChangeListner(this.onTodoChange);

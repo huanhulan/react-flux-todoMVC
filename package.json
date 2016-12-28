@@ -22,9 +22,13 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
+    "history": "^1.13.1",
     "react": "^0.13.0",
     "react": "^0.14.0-beta3",
     "react-dom": "^0.14.0-beta3",
+    "react-router": "^1.0.2",
+    "file-loader": "^0.8.4",
+    "url-loader": "^0.5.6",
     "flux": "^2.1.1"
   },
   "jest": {
