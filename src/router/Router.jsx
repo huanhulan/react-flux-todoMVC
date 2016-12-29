@@ -1,8 +1,4 @@
 import {
-    createHistory,
-    useBasename
-} from 'history';
-import {
     Router,
     Route,
     Redirect,

@@ -22,6 +22,7 @@ const TodoApp = React.createClass({
         TodoStore.attachChangeListner(this.onTodoChange);
     },
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         if(this.props.location.pathname!==nextProps.location.pathname){
             var todos = this.getFilteredTodos(nextProps.location.pathname);
             return this.setState({filteredTodos:todos});

@@ -1,8 +1,8 @@
 import React from 'react';
 import ActionCreator from './../actions/TodoActionCreators'
 
-var headerText = "待办";
-var placeholderText = "填写待办事项";
+var HEADER_TEXT = "待办";
+var PLACEHOLDER_TEXT = "填写待办事项";
 var autoFocus = true;
 
 const Header = React.createClass({
@@ -31,8 +31,8 @@ const Header = React.createClass({
     render(){
         return(
             <header className='header'>
-                <h1>{headerText}</h1>
-                <input className="new-todo" autoFocus={autoFocus} autoComplete="off" placeholder={placeholderText} value={this.state.newTodo} onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
+                <h1>{HEADER_TEXT}</h1>
+                <input className="new-todo" autoFocus={autoFocus} autoComplete="off" placeholder={PLACEHOLDER_TEXT} value={this.state.newTodo} onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
             </header>
         );
     }

@@ -7,7 +7,7 @@ const Main = React.createClass({
     propTypes:{
         filteredTodos:React.PropTypes.array
     },
-    handleClick(e){
+    handleChange(e){
         if(this.props.allDone){
             return ActionCreator.setAllTodoToUncompleted();
         }
@@ -20,7 +20,7 @@ const Main = React.createClass({
                     type="checkbox"
                     className={this.props.all?'toggle-all':'toggle-all hidden'}
                     checked={this.props.allDone}
-                    onChange={this.handleClick}
+                    onChange={this.handleChange}
                 />
                 <TodoList filteredTodos={this.props.filteredTodos}/>
             </section>

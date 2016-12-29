@@ -1,4 +1,4 @@
-react-forms
+react-flux-todomvc
 ===========
 
 Examples of Forms in ReactJS
