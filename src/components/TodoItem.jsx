@@ -1,41 +1,90 @@
 import React from 'react';
 import classnames from 'classnames';
-import ActionCreator from './../actions/TodoActionCreators'
+import ActionCreator from './../actions/TodoActionCreators';
 
 const TodoItem = React.createClass({
     getInitialState() {
         return {
-            editing:false,
-            editingTodo:this.props.todo // create a copy of origin todo when edit one
+            isEditing: false,
+            isTyping: false,
+            editingTodo: this.props.todo // create a copy of origin todo when edit one
         };
     },
-    propTypes:{
-        todo:React.PropTypes.object
+    componentDidUpdate() {
+        if (this.state.isEditing && !this.state.isTyping) {
+            var input = this.textInput;
+
+            input.focus();
+
+            if (input.select) {
+                input.setSelectionRange(0, input.value.length);
+            }
+        }
     },
-    editTodo(){
-        // TODO:change state
+    propTypes: {
+        todo: React.PropTypes.object
     },
-    handelKeyUp(){
+    editTodo(e) {
+        this.textInput.focus();
+        return this.setState({
+            isEditing: true
+        });
+    },
+    handleKeyDown(e) {
+        return this.setState({
+            isTyping: true
+        });
+    },
+    handelKeyUp(e) {
         // TODO:handle enter & esc
+        if (e.keyCode === 13) {
+            return this.doneEdit();
+        } else if (e.keyCode === 27) {
+            return this.setState({
+                editingTodo: this.props.todo,
+                isEditing: false,
+                isTyping: false
+            });
+        }
     },
-    handleChange(){
-        // TODO:handle change evt
+    handleChange(e) {
+        var newTodo = {
+            title: e.target.value,
+            id: +new Date(),
+            completed: false
+        };
+        var s = window.getSelection();
+        if (s.rangeCount > 1) {
+            for (var i = 1; i < s.rangeCount; i++) {
+                s.removeRange(s.getRangeAt(i));
+            }
+        }
+        return this.setState({
+            editingTodo: newTodo
+        });
     },
-    doneEdit(){
-        // TODO:create updateTodo action
+    doneEdit() {
+        this.setState({
+            isEditing: false,
+            isTyping: false
+        });
+
+        return ActionCreator.updateTodoInStore(this.props.todo,
+            this.state.editingTodo);
     },
-    toggleComplete(){
+    toggleComplete() {
         return ActionCreator.toggleStateForTodo(this.props.todo);
     },
-    removeTodo(){
+    removeTodo() {
         return ActionCreator.removeTodoFromStore(this.props.todo);
     },
     render() {
         var classes = classnames({
             completed: this.props.todo.completed,
             editing: this.state.isEditing,
-            todo:'todo'
+            todo: 'todo'
         });
+
         return (
             <li className={classes}>
                 <div className="view">
@@ -45,7 +94,7 @@ const TodoItem = React.createClass({
                 </div>
                 <input className="edit" type="text" value={this.state.editingTodo.title} 
                  autoFocus={this.state.isEditing} onBlur={this.doneEdit}
-                 onKeyUp={this.handelKeyUp} onChange={this.handleChange}/>
+                 onKeyUp={this.handelKeyUp} onChange={this.handleChange} ref={(input) => { this.textInput = input; }} onKeyDown={this.handleKeyDown}/>
             </li>
         );
     }
