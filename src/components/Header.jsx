@@ -1,8 +1,8 @@
 import React from 'react';
 import ActionCreator from './../actions/TodoActionCreators'
 
-var HEADER_TEXT = "待办";
-var PLACEHOLDER_TEXT = "填写待办事项";
+const HEADER_TEXT = "待办";
+const PLACEHOLDER_TEXT = "填写待办事项";
 var autoFocus = true;
 
 const Header = React.createClass({
