@@ -20,7 +20,7 @@ const Main = React.createClass({
                     type="checkbox"
                     className={this.props.all?'toggle-all':'toggle-all hidden'}
                     checked={this.props.allDone}
-                    onClick={this.handleClick}
+                    onChange={this.handleClick}
                 />
                 <TodoList filteredTodos={this.props.filteredTodos}/>
             </section>

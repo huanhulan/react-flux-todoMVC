@@ -92,9 +92,17 @@ const TodoItem = React.createClass({
                     <label onDoubleClick={this.editTodo}>{this.props.todo.title}</label>
                     <button className="destroy" onClick={this.removeTodo}></button>
                 </div>
-                <input className="edit" type="text" value={this.state.editingTodo.title} 
-                 autoFocus={this.state.isEditing} onBlur={this.doneEdit}
-                 onKeyUp={this.handelKeyUp} onChange={this.handleChange} ref={(input) => { this.textInput = input; }} onKeyDown={this.handleKeyDown}/>
+                <input 
+                    className="edit" 
+                    type="text" 
+                    value={this.state.editingTodo.title} 
+                    autoFocus={this.state.isEditing} 
+                    onBlur={this.doneEdit}
+                    onKeyUp={this.handelKeyUp} 
+                    onChange={this.handleChange} 
+                    ref={(input) => { this.textInput = input; }} 
+                    onKeyDown={this.handleKeyDown}
+                />
             </li>
         );
     }

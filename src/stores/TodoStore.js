@@ -7,13 +7,9 @@ import StoreConstants from '../constants/StoreConstants';
 import ActionsTable from '../constants/ActionConstants';
 
 var EVT = StoreConstants.CHANGE_EVENT;
-
+var STORAGE_KEY = 'todos-react-flux-1.0';
 /**the real store**/
-var _todos = [{
-    id: 1,
-    title: "test todo",
-    completed: false
-}];
+var _todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
 /**public api of the store**/
 var TodoStore = assign({}, EventEmitter.prototype, {
@@ -85,6 +81,7 @@ function _getIndexInTodos(item) {
 function _emitChange() {
     console.log(`--changed in ${new Date()}---`)
     console.log(`the new todo list is ${JSON.stringify(_todos)}`);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(_todos));
     return TodoStore.emit(EVT);
 }
 
