@@ -6,7 +6,7 @@ import Info from './Info';
 import TodoStore from './../stores/TodoStore';
 import RouterConstant from './../constants/RouterConstant';
 
-var footerTextList = ['回车以增加条目','双击以编辑条目'];
+var footerTextList = ['回车以增加条目','双击或长按(移动端)以编辑条目','移动端右滑删除条目'];
 
 const TodoApp = React.createClass({
     getInitialState() {

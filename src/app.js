@@ -8,11 +8,7 @@ import {
     browserHistory,
     Router
 } from 'react-router';
-import FastClick from 'fastclick';
 
-window.addEventListener('load', () => {
-    FastClick.attach(document.body);
-});
 // call the createHistory to turn off the query key
 // to turn on:
 // ReactDOM.render((<Router history={browserHistory} routes={TodoRouter} />), document.getElementById('app'));

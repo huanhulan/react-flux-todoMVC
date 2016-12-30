@@ -1,14 +1,18 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import ActionCreator from './../actions/TodoActionCreators';
+import Hammer from 'hammerjs';
 
 const TodoItem = React.createClass({
-    getInitialState() {
-        return {
-            isEditing: false,
-            isTyping: false,
-            editingTodo: this.props.todo // create a copy of origin todo when edit one
-        };
+    componentDidMount() {
+        let elLabel = ReactDOM.findDOMNode(this).querySelectorAll('.todo-item__label')[0];
+        this.hammer = Hammer(elLabel);
+        this.hammer.on('press',this.editTodo);
+        this.hammer.on('swiperight',this.removeTodo);
+    },
+    componentWillUnmount() {
+        this.hammer.off('press',this.editTodo);  
     },
     componentDidUpdate() {
         if (this.state.isEditing && !this.state.isTyping) {
@@ -20,6 +24,13 @@ const TodoItem = React.createClass({
                 input.setSelectionRange(0, input.value.length);
             }
         }
+    },
+    getInitialState() {
+        return {
+            isEditing: false,
+            isTyping: false,
+            editingTodo: this.props.todo // create a copy of origin todo when edit one
+        };
     },
     propTypes: {
         todo: React.PropTypes.object
@@ -89,7 +100,12 @@ const TodoItem = React.createClass({
             <li className={classes}>
                 <div className="view">
                     <input className="toggle" type="checkbox" onChange={this.toggleComplete} checked={this.props.todo.completed}/>
-                    <label onDoubleClick={this.editTodo}>{this.props.todo.title}</label>
+                    <label 
+                        onDoubleClick={this.editTodo}
+                        className="todo-item__label"
+                    >
+                        {this.props.todo.title}
+                    </label>
                     <button className="destroy" onClick={this.removeTodo}></button>
                 </div>
                 <input 

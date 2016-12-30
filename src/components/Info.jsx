@@ -3,7 +3,7 @@ import React from 'react';
 const Info = React.createClass({
     getDefaultProps(){
         return {
-            footerTextList:['双击以编辑条目']
+            footerTextList:['双击或长按(移动端)以编辑条目']
         };
     },
     propTypes:{
