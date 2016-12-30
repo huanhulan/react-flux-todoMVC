@@ -45,7 +45,7 @@
     "jest-cli": "0.7.1",
     "keymirror": "~0.1.0",
     "object-assign": "^1.0.0",
-    "react-hot-loader": "^1.2.7",
+    "react-hot-loader": "~3.0.0-alpha.6",
     "react-test-renderer": "^15.4.1",
     "webpack": "^1.9.6",
     "webpack-dev-server": "^1.8.2"
