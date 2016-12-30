@@ -10,9 +10,14 @@
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/lodash",
+      "<rootDir>/node_modules/inspect-react-element",
+      "<rootDir>/node_modules/indent",
       "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/fbjs",
       "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils"
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "components/generic"
     ],
     "testFileExtensions": [
       "es6",
@@ -49,8 +54,8 @@
     "camel-case": "^1.2.2",
     "classnames": "^2.2.3",
     "history": "^1.13.1",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.0-beta3",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "react-router": "^1.0.2",
     "file-loader": "^0.8.4",
     "url-loader": "^0.5.6",
