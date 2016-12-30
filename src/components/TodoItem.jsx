@@ -12,7 +12,8 @@ const TodoItem = React.createClass({
         this.hammer.on('swiperight',this.removeTodo);
     },
     componentWillUnmount() {
-        this.hammer.off('press',this.editTodo);  
+        this.hammer.off('press',this.editTodo); 
+        this.hammer.off('swiperight',this.removeTodo); 
     },
     componentDidUpdate() {
         if (this.state.isEditing && !this.state.isTyping) {
