@@ -53,10 +53,10 @@
   "dependencies": {
     "camel-case": "^1.2.2",
     "classnames": "^2.2.3",
-    "history": "^1.13.1",
+    "history": "^3.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-router": "^1.0.2",
+    "react-router": "^3.0.0",
     "file-loader": "^0.8.4",
     "url-loader": "^0.5.6",
     "flux": "^2.1.1",
