@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
