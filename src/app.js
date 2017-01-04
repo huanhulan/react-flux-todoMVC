@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TodoRouter from './router/Router'
 import {
     createHistory
-} from 'history'
+} from 'history';
 import {
     browserHistory,
     Router
