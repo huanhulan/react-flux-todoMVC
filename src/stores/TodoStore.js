@@ -23,10 +23,10 @@ var TodoStore = assign({}, EventEmitter.prototype, {
         return _todos;
     },
     getActiveTodos() {
-        return _todos.filter(todo => !todo.completed);
+        return _todos.filter(todo = > !todo.completed);
     },
     getCompletedTodos() {
-        return _todos.filter(todo => todo.completed);
+        return _todos.filter(todo = > todo.completed);
     }
 });
 
@@ -99,22 +99,20 @@ function _updateItem(fromItem, toItem) {
 }
 
 function _setAllToCompleted() {
-    return _todos.map(todo => todo.completed = true);
+    return _todos.map(todo = > todo.completed = true);
 }
 
 function _setAllToUncompleted(argument) {
-    return _todos.map(todo => todo.completed = false);
+    return _todos.map(todo = > todo.completed = false);
 }
 
 function _toggleItem(item) {
     var todo = _todos[_getIndexInTodos(item)];
-    console.log(todo)
     todo.completed = !todo.completed;
 }
 
 function _removeAllCompletedItem(item) {
-    var res = _todos.filter(todo => !todo.completed);
-
+    var res = _todos.filter(todo = > !todo.completed);
     _todos = res;
 }
 
