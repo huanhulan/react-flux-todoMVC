@@ -160,9 +160,13 @@ label[for='toggle-all'] {
 
 .todo-list li.editing .edit {
     display: block;
-    width: 506px;
+    max-width: 506px;
     padding: 12px 16px;
     margin: 0 0 0 43px;
+    width: calc(100% - 43px);
+    width: -webkit-calc(100% - 43px);
+    width: -o-calc(100% - 43px);
+    width: -ms-calc(100% - 43px);
 }
 
 .todo-list li.editing .view {
@@ -363,4 +367,37 @@ html .clear-completed:active {
     .filters {
         bottom: 10px;
     }
+}
+
+.todo-enter,
+.todo-appear {
+  opacity: 0;
+  transform: translate(100%, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+.todo-appear.todo-appear-active,
+.todo-enter.todo-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease;
+  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.todo-leave {
+  opacity: 1;
+  transform: translate(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.todo-leave.todo-leave-active {
+  opacity: 0;
+  transform: translate(100%, 0);
+  transform: translate3d(100%, 0, 0);
 }

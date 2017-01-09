@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const TodoList = React.createClass({
     getDefaultProps() {
@@ -19,9 +20,17 @@ const TodoList = React.createClass({
     },
     render(){
         return (
-            <ul className='todo-list'>
-                {this.getTodos()}
-            </ul>
+                <ul className='todo-list'>
+                    <ReactCSSTransitionGroup 
+                        transitionName = "todo" 
+                        transitionAppear = {true}
+                        transitionAppearTimeout = {0}
+                        transitionEnterTimeout = {0} 
+                        transitionLeaveTimeout = {0}
+                    >
+                        {this.getTodos()}
+                    </ReactCSSTransitionGroup>
+                </ul>
         );
     }
 });

@@ -18,6 +18,9 @@ const Header = React.createClass({
         this.setState({newTodo:e.target.value});
     },
     handleKeyUp(e){
+        if(!this.state.newTodo){
+            return;
+        }
         if (e.keyCode === 13) { //13 = enter key
             let todo = {
                 id:+new Date(),
