@@ -8,6 +8,7 @@ import ActionsTable from '../constants/ActionConstants';
 
 var EVT = StoreConstants.CHANGE_EVENT;
 var STORAGE_KEY = 'todos-react-flux-1.0';
+
 /**the real store**/
 var _todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
@@ -39,31 +40,31 @@ function handleAction(action) {
     switch (action.type) {
         case ActionsTable.ADD_ITEM:
             _addItem(action.item);
-            _emitChange();
+            _emitChange(action.type);
             break;
         case ActionsTable.REMOVE_ITEM:
             _removeItem(action.item);
-            _emitChange();
+            _emitChange(action.type);
             break;
         case ActionsTable.UPDATE_ITEM:
             _updateItem(action.from, action.to);
-            _emitChange();
+            _emitChange(action.type);
             break;
         case ActionsTable.ALL_DONE:
             _setAllToCompleted();
-            _emitChange();
+            _emitChange(action.type);
             break;
         case ActionsTable.TOGGLE_COMPLETE:
             _toggleItem(action.item);
-            _emitChange();
+            _emitChange(action.type);
             break;
         case ActionsTable.REMOVE_COMPLETED:
             _removeAllCompletedItem();
-            _emitChange();
+            _emitChange(action.type);
             break;
         case ActionsTable.ALL_UNDONE:
             _setAllToUncompleted();
-            _emitChange();
+            _emitChange(action.type);
             break;
         default:
             console.log(`uncaught action ${action.type}`);
@@ -72,14 +73,18 @@ function handleAction(action) {
 }
 
 /**private methods start**/
-// TODO: localstorage
 function _getIndexInTodos(item) {
-    return _todos.indexOf(item);
+    for (var i = _todos.length - 1; i >= 0; i--) {
+        if (item.id === _todos[i].id) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 // inform the view to update
-function _emitChange() {
-    console.log(`--changed in ${new Date()}---`)
+function _emitChange(type) {
+    console.log(`--changed in ${new Date()}, the type is ${type}---`);
     console.log(`the new todo list is ${JSON.stringify(_todos)}`);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(_todos));
     return TodoStore.emit(EVT);
@@ -95,7 +100,7 @@ function _removeItem(item) {
 }
 
 function _updateItem(fromItem, toItem) {
-    _todos[_getIndexInTodos(fromItem)] = toItem;
+    return _todos[_getIndexInTodos(fromItem)] = toItem;
 }
 
 function _setAllToCompleted() {

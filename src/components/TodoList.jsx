@@ -5,15 +5,23 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 const TodoList = React.createClass({
     getDefaultProps() {
         return {
-            filteredTodos:[]
+            filteredTodos: []
         };
     },
     propTypes:{
-        filteredTodos:React.PropTypes.array
+        filteredTodos: React.PropTypes.array
     },
     getTodos(){
+        /* the key have special effects on diffing virtual dom,
+         * make sure that every change can be properly tracked.
+         * If you put the key of every child component by it's index,
+         * it won't change while the length of the children changing and that
+         * will make the component behave weirdly when change the length of the
+         * children.
+         */
+        
         var todoItemList = this.props.filteredTodos.map((todo,index)=>{
-            return (<TodoItem todo={todo} key={index}/>);
+            return (<TodoItem todo={todo} key={todo.id}/>);
         });
         
         return todoItemList;

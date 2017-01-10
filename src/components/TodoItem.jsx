@@ -5,15 +5,21 @@ import ActionCreator from './../actions/TodoActionCreators';
 import Hammer from 'hammerjs';
 
 const TodoItem = React.createClass({
+    getInitialState() {
+        return {
+            isEditing: false,
+            isTyping: false,
+            editingTodo: this.props.todo // create a copy of origin todo when edit one
+        };
+    },
+    propTypes: {
+        todo: React.PropTypes.object
+    },
     componentDidMount() {
         let elLabel = ReactDOM.findDOMNode(this).querySelectorAll('.todo-item__label')[0];
         this.hammer = Hammer(elLabel);
         this.hammer.on('press',this.editTodo);
         this.hammer.on('swiperight',this.removeTodo);
-    },
-    componentWillUnmount() {
-        this.hammer.off('press',this.editTodo); 
-        this.hammer.off('swiperight',this.removeTodo); 
     },
     componentDidUpdate() {
         if (this.state.isEditing && !this.state.isTyping) {
@@ -26,15 +32,9 @@ const TodoItem = React.createClass({
             }
         }
     },
-    getInitialState() {
-        return {
-            isEditing: false,
-            isTyping: false,
-            editingTodo: this.props.todo // create a copy of origin todo when edit one
-        };
-    },
-    propTypes: {
-        todo: React.PropTypes.object
+    componentWillUnmount() {
+        this.hammer.off('press',this.editTodo); 
+        this.hammer.off('swiperight',this.removeTodo); 
     },
     editTodo(e) {
         this.textInput.focus();
@@ -66,6 +66,7 @@ const TodoItem = React.createClass({
             completed: false
         };
         var s = window.getSelection();
+        
         if (s.rangeCount > 1) {
             for (var i = 1; i < s.rangeCount; i++) {
                 s.removeRange(s.getRangeAt(i));
