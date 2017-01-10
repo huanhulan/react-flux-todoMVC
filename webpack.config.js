@@ -25,6 +25,9 @@ module.exports = {
       test: /\.jsx?$/,
       loaders: ['react-hot-loader/webpack', 'babel'],
       include: path.join(__dirname, 'src')
+    }, {
+      test: /\.css$/, // Only .css files
+      loader: 'style!css' // Run both loaders
     }]
   }
 };

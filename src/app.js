@@ -1,3 +1,4 @@
+import './statics/style.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TodoRouter from './router/Router'
