@@ -147,6 +147,11 @@ label[for='toggle-all'] {
     position: relative;
     font-size: 24px;
     border-bottom: 1px solid #ededed;
+    transform: translateZ(0);
+    transform: -webkit-translateZ(0);
+    transform: -o-translateZ(0);
+    transform: -moz-translateZ(0);
+    transform: -ms-translateZ(0);
 }
 
 .todo-list li:last-child {
@@ -369,12 +374,9 @@ html .clear-completed:active {
     }
 }
 
-.todo
--enter,
+.todo-enter,
 .todo-appear {
   opacity: 0;
-  transform: translate(100%, 0);
-  transform: translate3d(100%, 0, 0);
 }
 
 .todo-appear.todo-appear-active,
