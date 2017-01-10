@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import ActionCreator from './../actions/TodoActionCreators';
 import Hammer from 'hammerjs';
+import assign from 'object-assign';
 
 const TodoItem = React.createClass({
     getInitialState() {
@@ -60,11 +61,9 @@ const TodoItem = React.createClass({
         }
     },
     handleChange(e) {
-        var newTodo = {
+        var newTodo = assign(this.props.todo,{
             title: e.target.value,
-            id: +new Date(),
-            completed: false
-        };
+        });
         var s = window.getSelection();
         
         if (s.rangeCount > 1) {
