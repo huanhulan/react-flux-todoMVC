@@ -1,13 +1,13 @@
 react-flux-todomvc
 ===========
 
-Examples of Forms in ReactJS
+A Todo MVC implementation with react,react-router and flux.
 
 ### Usage
 
 ```
 npm install
 npm start
-open http://localhost:9000
+open http://localhost:3000
 ```
 
